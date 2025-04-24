@@ -11,4 +11,60 @@ body {
   align-items: center;
   background-color: #1E1E2F;
   color: orange;
+  font-family: "Press Start 2P";
+}
+.header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 36px;
+}
+.gameStart {
+  display: grid;
+  gap: 40px;
+}
+.gameStart button {
+  width: 200px;
+  height: 40px;
+  justify-self: center;
+  font-family: inherit;
+}
+.gameStart button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.dialogBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0,0.6);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+}
+
+.dialogBox {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  max-width: 550px;
+  
+}
+.dialogBox h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.dialogBox p {
+  margin-bottom: 10px;
+}
+.dialogBox button {
+  width: 80px;
+  height: 30px;
+  margin-left: 200px;
+  margin-top: 10px;
+}
+.dialogBox button:hover {
+  cursor: pointer;
 }

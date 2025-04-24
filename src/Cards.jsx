@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useEffect } from "react";
 import styles from "./styles/cards.module.css";
 
 function shuffleArray(array) {
@@ -9,13 +9,38 @@ function shuffleArray(array) {
   }
   return arr;
 }
-export function Cards({ data, setData, setScore, setBestScore, bestScore, score }) {
-  const [pickedCardsName, setPickedCardsName] = useState([]);
+export function Cards({
+  data,
+  setData,
+  setScore,
+  setBestScore,
+  bestScore,
+  score,
+  setGameOver,
+  gameOver,
+  pickedCardsName,
+  setPickedCardsName
+}) {
+  const gameWon = () => {
+    setScore(0);
+    setBestScore(16);
+    setPickedCardsName([]);
+    setGameOver(true);
+  };
+
+  const continueGame = () => {
+    setData(shuffleArray(data));
+  };
+  useEffect(() => {
+    if (score == 16) {
+      gameWon();
+    }
+  },);
 
   const handleCardClick = (cardName) => {
+    if (gameOver == true) setGameOver(false);
     if (pickedCardsName.includes(cardName)) {
-        if (score >= bestScore)
-            setBestScore(score);
+      if (score >= bestScore) setBestScore(score);
       setScore(0);
       setPickedCardsName([]);
     } else {
@@ -25,15 +50,12 @@ export function Cards({ data, setData, setScore, setBestScore, bestScore, score 
     }
   };
 
-  const continueGame = () => {
-    setData(shuffleArray(data));
-  };
   return (
     <div className={styles.cards}>
-      {data.map((card) => (
+      {data.map((card,index) => (
         <div
           className={styles.card}
-          key={card.name}
+          key={index}
           onClick={() => handleCardClick(card.name)}
         >
           <img src={card.imgUrl} alt="pokemon_img" />

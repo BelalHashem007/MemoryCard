@@ -3,28 +3,41 @@ import styles from "./styles/app.module.css";
 import Game from "./Game.jsx";
 export default function App() {
   const [showGame, setShowGame] = useState(false);
-
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
   function startGameHandler() {
     setShowGame(true);
+    setShowMenu(false);
+  }
+  function showHowToPlayHandler() {
+    setShowHowToPlay(true);
   }
   return (
-    <div className="app">
-      <div
-        className="game-info"
-        style={{ display: showGame ? "none" : "block" }}
-      >
-        <article>
-          <h2>Game Rules!</h2>
-          <p>
-            You can click on cards that you didn`t click before to get points.
-          </p>
-          <p>When you click on card you clicked before the game ends.</p>
-          <p>Best score is the highest score you got in the previous rounds.</p>
-        </article>
-        <button onClick={startGameHandler}>Start Game</button>
-      </div>
-      {showGame && <Game/>}
-      <footer>Background image from <a href="https://www.wallpaperflare.com/search?wallpaper=Legendary+Pok%C3%A9mon" target="_blank" rel="noopener noreferrer">Wallpaper Flare</a></footer>
+    <div className={styles.app}>
+      {showHowToPlay && (
+        <div className={styles.dialogBackdrop}>
+          <div className={styles.dialogBox}>
+            <h2>How to Play</h2>
+            <p>
+              1.You can click on cards that you didn`t click before to get
+              points.
+            </p>
+            <p>
+              2.Best score is the highest score you got in the previous rounds.
+            </p>
+            <p>3.You win if you find all unique cards.</p>
+            <button onClick={() => setShowHowToPlay(false)}>OK</button>
+          </div>
+        </div>
+      )}
+      {showMenu && (
+        <div className={styles.gameStart}>
+          <header className={styles.header}>Memory Card Game</header>
+          <button onClick={startGameHandler}>Start Game</button>
+          <button onClick={showHowToPlayHandler}>How to Play</button>
+        </div>
+      )}
+      {showGame && <Game setShowMenu={setShowMenu} setShowGame={setShowGame} />}
     </div>
   );
 }

@@ -1,0 +1,32 @@
+.showMenuButton,.reset,.changePoke{
+    font-family: inherit;
+    height: 30px;
+    color: orange;
+    background-color: #795548;
+    justify-self: center;
+}
+.showMenuButton, .reset {
+    width: 120px;
+}
+.showMenuButton:hover,.reset:hover,.changePoke:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.subHeaderContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 550px;
+}
+.gameOverText {
+    margin-top: 10px;
+    max-width: 550px;
+}
+.changePoke {
+    width: 250px;
+}
+.scoresContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
